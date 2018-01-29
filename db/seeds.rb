@@ -1,7 +1,7 @@
 User.destroy_all
 Match.destroy_all
 
-user1 = User.create!(email: 'felipe@match.com', password: 'abcd1234')
+admin = User.create!(email: 'felipe@match.com', password: 'abcd1234', is_admin: true)
 user2 = User.create!(email: 'renato@match.com', password: 'abcd1234')
 user3 = User.create!(email: 'john@match.com', password: 'abcd1234')
 user4 = User.create!(email: 'jane@match.com', password: 'abcd1234')
