@@ -4,6 +4,6 @@
     button_text = user.is_admin? ? 'Demote' : 'Promote'
     button_class = user.is_admin? ? 'btn-danger' : 'btn-success'
   %>
-  <li><%= user.email %> &nbsp; <button type="button" value="<%= user.id %>" class="btn <%= button_class %>"> <%= button_text %> </button></li>
+  <li><%= user.email %> &nbsp; <button type="button" value="<%= user.id %>" class="toggle-role btn <%= button_class %>"> <%= button_text %> </button></li>
 <% end %>
 </ul>
