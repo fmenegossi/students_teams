@@ -27,7 +27,6 @@ class User < ApplicationRecord
     matches.find_by(date: Date.today)
   end
 
-
   def is_admin?
     is_admin
   end
