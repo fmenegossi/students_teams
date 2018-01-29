@@ -1,1 +1,19 @@
-<h1>student</h1>
+<div class="row">
+  <div class="col-xs-6">
+    <h3>Today's match</h3>
+
+  </div>
+
+  <div class="col-xs-6">
+   <h3>Past matches</h3>
+   
+   <% current_user.past_matches.each do |match| %>
+   <% match.users.each do |user|  %>
+     <% if user != current_user  %>
+          <%= user.email %>
+       <% end %>
+       <% end %>
+
+   <% end %>
+  </div>
+</div>
