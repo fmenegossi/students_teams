@@ -18,13 +18,13 @@ class User < ApplicationRecord
   def self.all_other_users(user_id)
     User.all.where.not(id: user_id)
   end
-  
+
   def past_matches
     matches.where("date < ?", Date.today)
   end
 
   def today_match
-    matches.where("date = ?", Date.today)
+    matches.find_by(date: Date.today)
   end
 
 
