@@ -22,12 +22,8 @@ RSpec.describe Match, type: :model do
     let(:user2){ create(:user) }
     let(:user_matches){ create(:user_matches) }
 
-    it "users must be related to the match"
-
     it "match must be related to the users"
 
     it "destroy a match must destroy user_matches"
-
-    it "destroy a user must destroy user_matches"
   end
 end
