@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Match, type: :model do
-  describe "CRUD Match" do
+  describe "Validates Match" do
     let (:match){ create(:match) }
 
     it "add a new match" do
@@ -33,8 +33,8 @@ RSpec.describe Match, type: :model do
     let(:match){ create(:match) }
     let(:user1){ create(:user) }
     let(:user2){ create(:user) }
-    let(:user_match1){ create(:user_matches, user: user1, match: match) }
-    let(:user_match2){ create(:user_matches, user: user2, match: match) }
+    let(:user_match1){ create(:user_match, user: user1, match: match) }
+    let(:user_match2){ create(:user_match, user: user2, match: match) }
 
     it "match must be related to the users" do
       user_match1.valid?
