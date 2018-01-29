@@ -2,18 +2,32 @@
   <div class="col-xs-6">
     <h3>Today's match</h3>
 
+
+    <% current_user.today_match.users.each do |user| %>
+       <% if current_user != user %>
+         <%= user.email %> on <%= current_user.today_match.date %>
+       <% end %>
+    <% end %>
+
   </div>
 
   <div class="col-xs-6">
-   <h3>Past matches</h3>
-   
-   <% current_user.past_matches.each do |match| %>
-   <% match.users.each do |user|  %>
-     <% if user != current_user  %>
-          <%= user.email %>
-       <% end %>
-       <% end %>
+    <h3>Past matches</h3>
 
-   <% end %>
+    <% current_user.past_matches.each do |match| %>
+
+       <h5><%= match.date %>:</h5>
+
+       <% match.users.each do |user| %>
+
+           <% if current_user != user %>
+
+               <%= user.email %>
+
+           <% end %>
+
+       <% end %>
+    <% end %>
+
   </div>
 </div>
