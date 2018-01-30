@@ -4,14 +4,28 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :user_matches , dependent: :destroy
+  has_many :user_matches, dependent: :destroy
   has_many :matches, through: :user_matches
 
-  def self.students
+  def self.available_students(match_date)
+    available = []
+
+    all_students.each do |student|
+      if student.matches.find_by(date: match_date)
+        next
+      else
+        available << student
+      end
+    end
+
+    available
+  end
+
+  def self.all_students
     User.all.where(is_admin: false)
   end
 
-  def self.admins
+  def self.all_admins
     User.all.where(is_admin: true)
   end
 
