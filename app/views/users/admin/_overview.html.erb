@@ -1,13 +1,1 @@
-<div class="row">
-  <ul>
-  <% Match.all_matches.each do |match| %>
-    <li><%= match.date %>
-      <ul>
-      <% match.users.each do |user| %>
-        <li><%= user.email %></li>
-      <% end %>
-      </ul>
-    </li>
-  <% end %>
-  </ul>
-</div>
+<div class="row" id="team-list"></div>
