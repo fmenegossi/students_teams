@@ -10,11 +10,11 @@ class Api::UsersController < Api::BaseApiController
       render status: 201, json: {
         message: 'toggled user',
         user: @user
-      }.to_json
+      }
     else
       render status: 422, json: {
         errors: @user.errors
-      }.to_json
+      }
        end
   end
 

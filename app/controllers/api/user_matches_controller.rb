@@ -9,14 +9,14 @@ class Api::UserMatchesController < Api::BaseApiController
           message: user_matches.errors,
           json: user_matches
         }
-      ).to_json
+      )
     else
       render(
         {
           status: 201,
           json: user_matches
         }
-      ).to_json
+      )
     end
   end
 

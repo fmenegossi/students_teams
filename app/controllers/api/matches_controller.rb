@@ -9,7 +9,7 @@ class Api::UserMatchesController < Api::BaseApiController
         status: 200,
         json: @matches
       }
-    ).to_json
+    )
   end
 
   def show
@@ -21,7 +21,7 @@ class Api::UserMatchesController < Api::BaseApiController
         status: 200,
         json: [@past_matches, @today_match]
       }
-    ).to_json
+    )
   end
 
   private
