@@ -9,6 +9,10 @@ class Match < ApplicationRecord
     Match.all
   end
 
+  def self.matches_in_date(date)
+    Match.find_by(:date, date)
+  end
+
   private
 
   def date_cannot_be_in_the_past
