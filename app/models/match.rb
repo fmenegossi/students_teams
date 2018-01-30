@@ -3,7 +3,7 @@ class Match < ApplicationRecord
   has_many :users, through: :user_matches
 
   validates :date, presence: true
-  #validate :date_cannot_be_in_the_past
+  validate :date_cannot_be_in_the_past
 
   def self.all_matches
     Match.all
