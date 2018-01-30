@@ -4,17 +4,20 @@ function generateMatches(){
   let date = $('#date').val();
   let team_size = 2;
 
-  $ajax({
+
+
+  let user_match =  {
+      date : date,
+      team_size : team_size
+
+  }
+  $.ajax({
     type :'POST',
     url : '/api/user_matches',
     contentType: "application/json",
     dataType: "json",
-    data : {
-      user_match : {
-        date : date,
-        team_size : team_size
-      }
-    }
+    data : JSON.stringify({ user_match :user_match} )
+
   }).done(function(response){
 
     showMatches(response);
@@ -23,9 +26,9 @@ function generateMatches(){
 }
 
 function fetchMatches(){
-  $ajax({
+  $.ajax({
     type :'GET',
-    url : '/api/user_matches',
+    url : '/api/matches',
     contentType: "application/json",
     dataType: "json"
 
@@ -37,22 +40,24 @@ function fetchMatches(){
 }
 
 function showMatches(response){
-
+  console.log('called showMatches');
 
   let teamList = $('#team-list');
   teamList.empty();
 
   let matchesListLi = $('<li></li>');
 
-  $(response.matches).each(function(match){
-     matchesListLi.append(`<li>${response.user_id}</li>`);
+  $(response).each(function(match,item){
+    console.log(item);
+     matchesListLi.append(`<li>${item.users[0].email} / ${item.users[1].email}</li>`);
   })
-  let matchesListUl = $(document).create('<ul></ul>');
+  let matchesListUl = $('<ul></ul>');
   matchesListUl.append(matchesListLi);
+  teamList.append(matchesListUl);
 }
 
 $(document).ready( function(){
 
-  $('#generate-button').bind('click', generateMatches );
+  $('#generate-btn').bind('click', generateMatches );
   fetchMatches();
 })
