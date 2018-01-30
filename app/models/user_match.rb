@@ -4,6 +4,7 @@ class UserMatch < ApplicationRecord
 
   def self.generate_matches(match_date, team_size)
     students = User.available_students(match_date).shuffle
+
     teams = build_mixed_teams(students, team_size)
 
     user_matches = []
@@ -22,6 +23,8 @@ class UserMatch < ApplicationRecord
   end
 
   def self.build_mixed_teams(members, team_size)
+    puts members
+    puts team_size
     teams = []
     members.each_slice(team_size){ |team| teams << team }
 

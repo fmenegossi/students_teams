@@ -6,7 +6,7 @@ function generateMatches(){
 
 
 
-  let user_match =  {
+  let datas =  {
       date : date,
       team_size : team_size
 
@@ -16,7 +16,7 @@ function generateMatches(){
     url : '/api/user_matches',
     contentType: "application/json",
     dataType: "json",
-    data : JSON.stringify({ user_match :user_match} )
+    data : JSON.stringify(datas)
 
   }).done(function(response){
 
@@ -49,7 +49,7 @@ function showMatches(response){
 
   $(response).each(function(match,item){
     console.log(item);
-     matchesListLi.append(`<li>${item.users[0].email} / ${item.users[1].email}</li>`);
+     matchesListLi.append(`<li>${item.users[0].email} - ${item.users[1].email}</li>`);
   })
   let matchesListUl = $('<ul></ul>');
   matchesListUl.append(matchesListLi);
