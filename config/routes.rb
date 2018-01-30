@@ -5,4 +5,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   resources :users, only:[:index]
+
+  namespace :api do
+      resources :users , only:[:update]
+  end
+
 end
