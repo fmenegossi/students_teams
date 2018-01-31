@@ -4,20 +4,17 @@ function generateMatches(){
   let date = $('#date').val();
   let team_size = 2;
 
-
-
-  let datas =  {
+  let user_match = {
       date : date,
       team_size : team_size
-
-  }
+    };
+  
   $.ajax({
     type :'POST',
     url : '/api/user_matches',
     contentType: "application/json",
     dataType: "json",
-    data : JSON.stringify(datas)
-
+    data : JSON.stringify(user_match)
   }).done(function(response){
 
     showMatches(response);
@@ -40,8 +37,7 @@ function fetchMatches(){
 }
 
 function showMatches(response){
-  console.log('called showMatches');
-
+  
   let teamList = $('#team-list');
   teamList.empty();
 
@@ -51,7 +47,9 @@ function showMatches(response){
     console.log(item);
      matchesListLi.append(`<li>${item.users[0].email} - ${item.users[1].email}</li>`);
   })
+  
   let matchesListUl = $('<ul></ul>');
+  
   matchesListUl.append(matchesListLi);
   teamList.append(matchesListUl);
 }
