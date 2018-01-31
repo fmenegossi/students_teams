@@ -43,10 +43,13 @@ group :development, :test do
   gem 'rspec-rails', '~>3.5', '>= 3.5.2'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'capybara', '~>2.9', '>= 2.9.1'
+  gem 'selenium-webdriver'
+  gem "chromedriver-helper"
 end
 
 group :test do
-  gem 'capybara', '~>2.9', '>= 2.9.1'
+  gem 'database_cleaner'
 end
 
 group :development do
