@@ -33,6 +33,10 @@ class User < ApplicationRecord
     User.all.where.not(id: user_id)
   end
 
+  def self.all_other_students(student)
+    all_students.where.not(id: student)
+  end
+
   def past_matches
     matches.where("date < ?", Date.today)
   end
