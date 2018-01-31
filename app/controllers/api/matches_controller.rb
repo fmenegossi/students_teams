@@ -1,4 +1,4 @@
-class Api::UserMatchesController < Api::BaseApiController
+class Api::MatchesController < Api::BaseApiController
   before_action :set_user, only: [:show]
 
   def index
