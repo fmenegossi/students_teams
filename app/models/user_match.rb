@@ -26,9 +26,7 @@ class UserMatch < ApplicationRecord
 
     members.each_slice(team_size){ |team| teams << team }
 
-    if (!teams.empty?) && (teams.last.size == 1)
-      teams[rand(0..(teams.size - 2))] << teams.pop[0]
-    end
+    teams = distribute_remaining(teams, team_size) unless teams.empty
 
     teams.each do |team|
       team_ids = team.pluck(:id)
@@ -39,13 +37,12 @@ class UserMatch < ApplicationRecord
         other_students = User.all_other_students(student)
 
         past_matches = get_past_matches(student)
-        # past_matches.where(user: other_students)
         past_matches.where(user_id: other_students).pluck(:user_id)
+        max_combinations = get_max_combinations
 
-        if (past_matches.include?(team_ids))
-          if (past_matches.size % other_students.size > 0) || (last_match == team_ids)
-            return build_mixed_teams(members, team_size)
-          end
+        if (past_matches.include?(team_ids)) &&
+          ((past_matches.size % max_combinations > 0) || (last_match == team_ids))
+          return build_mixed_teams(members, team_size)
         end
       end
     end
@@ -59,5 +56,23 @@ class UserMatch < ApplicationRecord
 
   def self.get_past_matches(student)
     past_matches = UserMatch.all.where(match: student.matches)
+  end
+
+  def self.distribute_remaining(teams, team_size)
+    if (teams.last.size < team_size) && (teams.size > 2)
+      teams.pop.each do |remaining|
+        loop do
+          index = rand(0...(teams.size - 1))
+          (teams[index].size > team_size) ? next : teams[index] << remaining
+        end
+      end
+    end
+
+    teams
+  end
+
+  def self.get_max_combinations(number_of_members, team_size)
+    other_members = number_of_members - 1
+    (other_members.downto(other_members - team_size)).inject(:*)
   end
 end
