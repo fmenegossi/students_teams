@@ -40,7 +40,7 @@ function fetchMatches(){
 }
 
 function showMatches(response){
-  console.log('called showMatches');
+  
 
   let teamList = $('#team-list');
   teamList.empty();
