@@ -8,7 +8,7 @@ function generateMatches(){
       date : date,
       team_size : team_size
     };
-
+  
   $.ajax({
     type :'POST',
     url : '/api/user_matches',
@@ -37,7 +37,7 @@ function fetchMatches(){
 }
 
 function showMatches(response){
-
+  
   let teamList = $('#team-list');
   teamList.empty();
 
@@ -47,7 +47,9 @@ function showMatches(response){
     console.log(item);
      matchesListLi.append(`<li>${item.users[0].email} - ${item.users[1].email}</li>`);
   })
+  
   let matchesListUl = $('<ul></ul>');
+  
   matchesListUl.append(matchesListLi);
   teamList.append(matchesListUl);
 }

@@ -27,6 +27,8 @@ class UserMatch < ApplicationRecord
   end
 
   def self.build_mixed_teams(members, team_size)
+    puts members
+    puts team_size
     teams = []
     members.each_slice(team_size){ |team| teams << team }
 

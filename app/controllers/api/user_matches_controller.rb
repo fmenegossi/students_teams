@@ -2,9 +2,6 @@ class Api::UserMatchesController < Api::BaseApiController
   def create
     date = params[:date]
     team_size = params[:team_size]
-
-    # byebug
-
     user_matches = UserMatch.generate_matches(Date.parse(date), team_size)
 
     if user_matches.errors.present?
@@ -23,11 +20,5 @@ class Api::UserMatchesController < Api::BaseApiController
         }
       )
     end
-  end
-
-  private
-
-  def user_matches_params
-    params.require(:user_match).permit(:date, :team_size)
   end
 end
