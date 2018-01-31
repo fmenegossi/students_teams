@@ -37,15 +37,25 @@ function showMatches(){
     teamList.empty();
 
     let matchesListLi = $('<li></li>');
-
-    $(response).each(function(match, item){
-      console.log(item);
-      matchesListLi.append(`<li>${item.users[0].email} - ${item.users[1].email}</li>`);
-    })
-
     let matchesListUl = $('<ul></ul>');
 
-    matchesListUl.append(matchesListLi);
+    $(response).each(function(index, match){
+      let matchLi = $('<li></li>');
+      matchLi.html(match.date);
+
+      let studentsUl = $('<ul></ul>');
+
+      $(match.users).each(function(index, user){
+        studentsUl.append(`<li>${user.email}</li>`);
+      });
+
+      matchLi.append(studentsUl);
+
+      matchesListUl.append(matchLi);
+
+    });
+
+
     teamList.append(matchesListUl);
   });
 }
