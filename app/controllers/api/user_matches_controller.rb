@@ -4,12 +4,11 @@ class Api::UserMatchesController < Api::BaseApiController
     team_size = params[:team_size]
     user_matches = UserMatch.generate_matches(Date.parse(date), team_size)
 
-    if user_matches.errors.present?
+    if user_matches.empty?
       render(
         {
-          status: 422,
-          message: user_matches.errors,
-          json: user_matches
+          status: 204,
+          json: "No students available for this data"
         }
       )
     else
