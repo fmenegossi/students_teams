@@ -23,18 +23,6 @@ function generateMatches(){
   })
 }
 
-function fetchMatches(){
-  $.ajax({
-    type :'GET',
-    url : '/api/matches',
-    contentType: "application/json",
-    dataType: "json"
-
-  }).done(function(response){
-    return response;
-  })
-}
-
 function showMatches(){
   $.ajax({
     type :'GET',
