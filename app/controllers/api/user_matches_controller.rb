@@ -2,7 +2,7 @@ class Api::UserMatchesController < Api::BaseApiController
   def create
     date = params[:date]
     team_size = params[:team_size]
-    user_matches = UserMatch.generate_matches(date, team_size)
+    user_matches = UserMatch.generate_matches(Date.parse(date), team_size)
 
     if user_matches.errors.present?
       render(
@@ -21,6 +21,4 @@ class Api::UserMatchesController < Api::BaseApiController
       )
     end
   end
-
-
 end

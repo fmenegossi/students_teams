@@ -5,6 +5,10 @@ class UserMatch < ApplicationRecord
   def self.generate_matches(match_date, team_size)
     students = User.available_students(match_date).shuffle
 
+    if students.empty?
+      return false
+    end
+
     teams = build_mixed_teams(students, team_size)
 
     user_matches = []
@@ -29,7 +33,7 @@ class UserMatch < ApplicationRecord
     members.each_slice(team_size){ |team| teams << team }
 
     if teams.last.size == 1
-      teams[rand(0..teams.size - 2)] << teams.pop[0]
+      teams[rand(0..(teams.size - 2))] << teams.pop[0]
     end
 
     teams
