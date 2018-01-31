@@ -38,6 +38,7 @@ function fetchMatches(){
 
 function showMatches(response){
   
+
   let teamList = $('#team-list');
   teamList.empty();
 
