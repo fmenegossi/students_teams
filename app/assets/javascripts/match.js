@@ -8,7 +8,7 @@ function generateMatches(){
       date : date,
       team_size : team_size
     };
-  
+
   $.ajax({
     type :'POST',
     url : '/api/user_matches',
@@ -16,8 +16,9 @@ function generateMatches(){
     dataType: "json",
     data : JSON.stringify(user_match)
   }).done(function(response){
+    console.log(response);
 
-    showMatches(response);
+    showMatches();
 
   })
 }
@@ -30,32 +31,40 @@ function fetchMatches(){
     dataType: "json"
 
   }).done(function(response){
-
-    showMatches(response);
-
+    return response;
   })
 }
 
-function showMatches(response){
-  
-  let teamList = $('#team-list');
-  teamList.empty();
-
-  let matchesListLi = $('<li></li>');
-
-  $(response).each(function(match,item){
-    console.log(item);
-     matchesListLi.append(`<li>${item.users[0].email} - ${item.users[1].email}</li>`);
+function showMatches(){
+  $.ajax({
+    type :'GET',
+    url : '/api/matches',
+    contentType: "application/json",
+    dataType: "json"
   })
-  
-  let matchesListUl = $('<ul></ul>');
-  
-  matchesListUl.append(matchesListLi);
-  teamList.append(matchesListUl);
+  .done(function(response){
+    console.log(response);
+
+    let teamList = $('#team-list');
+    teamList.empty();
+
+    let matchesListLi = $('<li></li>');
+
+    $(response).each(function(match, item){
+      console.log(item);
+      matchesListLi.append(`<li>${item.users[0].email} - ${item.users[1].email}</li>`);
+    })
+
+    let matchesListUl = $('<ul></ul>');
+
+    matchesListUl.append(matchesListLi);
+    teamList.append(matchesListUl);
+  });
+
+
 }
 
 $(document).ready( function(){
-
   $('#generate-btn').bind('click', generateMatches );
-  fetchMatches();
+  showMatches();
 })
