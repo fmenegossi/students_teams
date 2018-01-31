@@ -60,8 +60,6 @@ function showMatches(){
     matchesListUl.append(matchesListLi);
     teamList.append(matchesListUl);
   });
-
-
 }
 
 $(document).ready( function(){
