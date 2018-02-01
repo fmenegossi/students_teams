@@ -3,7 +3,7 @@ $(document).ready(function(){
 });
 
 function toggleRole(){
-  console.log(this.value);
+  //console.log(this.value);
 
   $.ajax({
     type: "PATCH",
@@ -17,6 +17,6 @@ function toggleRole(){
     $(this).toggleClass('btn-success');
     $(this).toggleClass('btn-danger');
   }).fail(() => {
-    
+
   })
 }

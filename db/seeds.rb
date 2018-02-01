@@ -34,3 +34,5 @@ matchu10 = UserMatch.create!(match:match5, user: user5)
 
 matchu11 = UserMatch.create!(match:match6, user: user2)
 matchu12 = UserMatch.create!(match:match6, user: user4)
+
+matchu13 = UserMatch.create!(match:match6, user: user5)
