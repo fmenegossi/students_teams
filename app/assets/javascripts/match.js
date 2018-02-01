@@ -88,6 +88,8 @@ function createUniqueDates(response){
 
   let uniqueMatches = $.uniqueSort(dates);
   console.log(uniqueMatches)
+  console.log(uniqueMatches.sort());
+  uniqueMatches.reverse();
 
   uniqueMatches.map(function(value,index){
 
@@ -103,8 +105,9 @@ function createUniqueDates(response){
         newObject.users = newUserObj;
      })
      reduced.push(newObject);
-     //console.log(reduced);
+
   })
+  //educed.sort();
   return reduced;
 }
 

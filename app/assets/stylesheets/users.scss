@@ -2,7 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 #team-list .date{
-  background-color: #08520b;
+  background-color: #ff9800;
   color : white;
   padding : 3px 7px 3px 7px;
   border-radius: 7px;
@@ -10,14 +10,19 @@
   margin-left: -20px;
 
 }
+.role-text{
+  color : #ff9800;
+}
 #team-list{
   ul{
     padding-left : 5px;
   }
 }
 .tabs-admin{
-
+  border-bottom: 1px solid #f5f5f5;
   margin-left:-30px;
+  padding-bottom:25px;
+  margin-bottom:30px;
 }
 .user-group{
 
@@ -34,5 +39,14 @@
 }
 #date{
   width: 180px;
+  margin-left: -15px;
   margin-bottom: 15px;
+  display : inline-block;
+}
+.toggle-role{
+  float:right;
+}
+.roles-list div{
+  margin-top: 10px;
+  margin-left: -30px;
 }
