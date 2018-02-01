@@ -1,3 +1,38 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#team-list .date{
+  background-color: #08520b;
+  color : white;
+  padding : 3px 7px 3px 7px;
+  border-radius: 7px;
+  display: inline-block;
+  margin-left: -20px;
+
+}
+#team-list{
+  ul{
+    padding-left : 5px;
+  }
+}
+.tabs-admin{
+
+  margin-left:-30px;
+}
+.user-group{
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px 0px 5px 5px;
+    background-color: #eaeaea;
+    border-radius: 7px;
+
+}
+.user-group-li{
+  margin-top:20px;
+
+}
+#date{
+  width: 180px;
+  margin-bottom: 15px;
+}

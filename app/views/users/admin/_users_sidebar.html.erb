@@ -1,4 +1,4 @@
-<ul>
+<ul class="roles-list">
 <% User.all_other_users(current_user.id).each do |user| %>
   <%
     button_text = user.is_admin? ? 'Demote' : 'Promote'

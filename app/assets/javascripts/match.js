@@ -22,7 +22,18 @@ function generateMatches(){
 
   })
 }
+function formatDate(dateToConvert){
 
+  const date= new Date(dateToConvert);
+
+  const day = date.getDate() < 10 ? `0${date.getDate()}` : date.getDate();
+  const month = date.getMonth() < 9 ? `0${date.getMonth() + 1}` : date.getMonth() + 1;
+  //const month = date.getMonth() + 1;
+  const year = date.getFullYear();
+
+  return `${day} ${month} ${year}`;
+
+}
 function showMatches(){
   $.ajax({
     type :'GET',
@@ -31,7 +42,7 @@ function showMatches(){
     dataType: "json"
   })
   .done(function(response){
-    console.log(response);
+    let data = createUniqueDates(response);
 
     let teamList = $('#team-list');
     teamList.empty();
@@ -39,14 +50,20 @@ function showMatches(){
     let matchesListLi = $('<li></li>');
     let matchesListUl = $('<ul></ul>');
 
-    $(response).each(function(index, match){
-      let matchLi = $('<li></li>');
-      matchLi.html(match.date);
+    data.map(function(match,index){
+      console.log(match.date);
+      console.log(match.users);
+      let matchLi = $('<li class="row user-group-li"></li>');
+      matchLi.html(`<div class="col-xs-12"><div class="date">${formatDate(match.date)}</div></div>`);
 
-      let studentsUl = $('<ul></ul>');
+      let studentsUl = $('<ul class="user-group col-xs-8"></ul>');
 
-      $(match.users).each(function(index, user){
-        studentsUl.append(`<li>${user.email}</li>`);
+      $(match.users).map(function(index, user){
+        console.log('users : ' , user);
+        userJoined = user.map(function(elem){
+            return elem.email;
+        }).join(", ");
+        studentsUl.append(`<li>${ userJoined }</li>`);
       });
 
       matchLi.append(studentsUl);
@@ -58,6 +75,37 @@ function showMatches(){
 
     teamList.append(matchesListUl);
   });
+}
+
+function createUniqueDates(response){
+
+  let dates=[];
+  let reduced =[];
+
+  $(response).each(function(index, match){
+     dates.push(match.date);
+  })
+
+  let uniqueMatches = $.uniqueSort(dates);
+  console.log(uniqueMatches)
+
+  uniqueMatches.map(function(value,index){
+
+     let newObject = new Object();
+     newObject.date = value;
+     let newUserObj = []
+     $(response).each(function(index, match){
+
+        if ( newObject.date === match.date ) {
+           newUserObj.push(match.users);
+        }
+
+        newObject.users = newUserObj;
+     })
+     reduced.push(newObject);
+     //console.log(reduced);
+  })
+  return reduced;
 }
 
 $(document).ready( function(){
