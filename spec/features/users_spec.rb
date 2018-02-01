@@ -55,11 +55,11 @@ describe 'user page', js: true do
     validate_matchups
     login admin
     visit users_path
-  
 
-    find('.roles-list > li:first-child > button').click
+    find('#pills-users-tab').click
+    find('.roles-list > div:first-child > button').click
 
-    expect(find('.roles-list > li:first-child > button').text).to eq('Demote')
+    expect(find('.roles-list > div:first-child > button').text).to eq('Demote')
 
 
   end
