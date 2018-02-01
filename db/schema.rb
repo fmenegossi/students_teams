@@ -10,15 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180129133029) do
+ActiveRecord::Schema.define(version: 20180201111448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "matches", force: :cascade do |t|
     t.date "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "student_groups", force: :cascade do |t|
+    t.bigint "group_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["group_id"], name: "index_student_groups_on_group_id"
+    t.index ["user_id"], name: "index_student_groups_on_user_id"
   end
 
   create_table "user_matches", force: :cascade do |t|
@@ -48,6 +65,8 @@ ActiveRecord::Schema.define(version: 20180129133029) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "student_groups", "groups"
+  add_foreign_key "student_groups", "users"
   add_foreign_key "user_matches", "matches"
   add_foreign_key "user_matches", "users"
 end

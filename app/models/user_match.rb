@@ -10,8 +10,6 @@ class UserMatch < ApplicationRecord
     end
 
     teams = build_mixed_teams(students, team_size)
-
-    # byebug
     user_matches = []
 
     teams.each do |team|
