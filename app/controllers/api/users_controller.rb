@@ -1,6 +1,6 @@
 class Api::UsersController < Api::BaseApiController
 
-  before_action :set_user
+  before_action :set_user , only: [:update]
 
   def update
     @user.is_admin = !@user.is_admin
