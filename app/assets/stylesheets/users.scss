@@ -1,7 +1,7 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-#team-list .date{
+.date, .student-date{
   background-color: #ff9800;
   color : white;
   padding : 3px 7px 3px 7px;
@@ -9,6 +9,9 @@
   display: inline-block;
   margin-left: -20px;
 
+}
+.student-date{
+  margin-left  :0px;
 }
 .role-text{
   color : #ff9800;

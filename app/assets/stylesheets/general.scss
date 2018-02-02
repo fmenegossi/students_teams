@@ -1,3 +1,19 @@
 *{
   list-style: none;
 }
+.alerts{
+   position:fixed;
+   min-width : 40%;
+   //display:none;
+   opacity: 0;
+   z-index : 10000;
+   right : 10px;
+}
+.show-alerts{
+  opacity : 1;
+  transition: opacity 2s ease-in-out;
+}
+.fade-alerts{
+  opacity : 0;
+
+}
