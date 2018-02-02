@@ -44,7 +44,7 @@ class UserMatch < ApplicationRecord
         max_combinations = get_max_combinations(members.size, team_size)
 
         if (past_matches.include?(team_ids)) &&
-          ((past_matches.size % max_combinations > 0))
+          (past_matches.size % max_combinations > 0)
           return build_mixed_teams(members, team_size)
         end
       end
