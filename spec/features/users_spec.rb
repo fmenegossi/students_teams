@@ -11,15 +11,10 @@ describe 'user page', js: true do
   let(:matchup1) { UserMatch.create(match: match, user: user2) }
 
   it " expects user2 to be today's match column" do
-
-
     validate_matchups
 
     login user
     visit users_path
-
-
-    puts find('.today-column').text
 
     expect(find('.today-column')).to have_content(user2.email)
   end
@@ -28,7 +23,6 @@ describe 'user page', js: true do
     validate_matchups
     login user
     visit users_path
-    puts find('.navbar-right').text
 
     expect(find('.navbar-right')).to have_content(user.email)
   end
@@ -37,7 +31,6 @@ describe 'user page', js: true do
     validate_matchups
     login user
     visit users_path
-    puts find('.navbar-right').text
 
     expect(find('.navbar-right')).to have_content('Student')
   end
@@ -46,7 +39,6 @@ describe 'user page', js: true do
     validate_matchups
     login admin
     visit users_path
-    puts find('.navbar-right').text
 
     expect(find('.navbar-right')).to have_content('Admin')
   end
@@ -60,8 +52,6 @@ describe 'user page', js: true do
     find('.roles-list > div:first-child > button').click
 
     expect(find('.roles-list > div:first-child > button').text).to eq('Demote')
-
-
   end
 end
 
