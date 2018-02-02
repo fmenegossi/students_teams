@@ -5,7 +5,7 @@
 
     <% @user.today_match.users.each do |user| %>
        <% if @user != user %>
-         <%= user.email %> on <%= @user.today_match.date %>
+         <%= user.email %>
        <% end %>
     <% end %>
 
@@ -16,17 +16,19 @@
 
     <% @user.past_matches.each do |match| %>
 
-       <h5><%= match.date %>:</h5>
+       <div class="date student-date"><%= match.date %></div>
 
-       <% match.users.each do |user| %>
+       <div class="user-group">
+         <% match.users.each do |user| %>
 
-           <% if @user != user %>
+             <% if @user != user %>
 
-               <%= user.email %>
+                 <%= user.email %>
 
-           <% end %>
+             <% end %>
 
-       <% end %>
+         <% end %>
+     </div>
     <% end %>
 
   </div>
