@@ -7,6 +7,9 @@ class User < ApplicationRecord
   has_many :user_matches, dependent: :destroy
   has_many :matches, through: :user_matches
 
+  has_many :student_groups, dependent: :destroy
+  has_many :groups, through: :student_groups
+
   def self.available_students(match_date)
     available = []
 

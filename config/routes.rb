@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       resources :users , only: [:update]
       resources :user_matches, only: [:create]
       resources :matches, only: [:index, :show]
+      resources :groups, only: [:index, :create, :destroy]
   end
 
 end
