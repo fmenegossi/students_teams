@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def index
 
     @role = @user.is_admin ? 'Admin' : 'Student'
+    
   end
 
   private

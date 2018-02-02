@@ -2,11 +2,12 @@
   <div class="col-xs-6 today-column">
     <h3>Today's match</h3>
 
-
-    <% @user.today_match.users.each do |user| %>
-       <% if @user != user %>
-         <%= user.email %>
-       <% end %>
+    <% if @user.today_match %>
+      <% @user.today_match.users.each do |user| %>
+         <% if @user != user %>
+           <%= user.email %>
+         <% end %>
+      <% end %>
     <% end %>
 
   </div>
