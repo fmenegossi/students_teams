@@ -26,9 +26,7 @@ class UserMatch < ApplicationRecord
   def self.build_mixed_teams(members, team_size)
     teams = []
     members = members.shuffle
-
     members.each_slice(team_size){ |team| teams << team }
-
     teams = distribute_remaining(teams, team_size) unless teams.empty?
 
     teams.each do |team|
@@ -38,7 +36,6 @@ class UserMatch < ApplicationRecord
         past_matches = []
         last_match = get_last_match(student)
         other_students = User.all_other_students(student)
-
         past_matches = get_past_matches(student)
         past_matches = past_matches.where(user_id: other_students).pluck(:user_id)
         max_combinations = get_max_combinations(members.size, team_size)
