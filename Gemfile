@@ -32,7 +32,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 
 # STUDENTS TEAMS GEMS
-gem 'devise', '~>4.2'
+gem 'devise', '~>4.7'
 gem 'bootstrap-sass', '~> 3.3.6'
 gem 'jquery-rails', '~> 4.3.1'
 gem 'active_model_serializers'
